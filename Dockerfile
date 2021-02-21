@@ -5,7 +5,11 @@ WORKDIR /build
 # Copy all files ignoring those specified in dockerignore
 COPY . /build/
 
+RUN go mod init circleci-ecs
+RUN go mod tidy
 # Installing custom packages from github
+# RUN go get -d github.com/prometheus/client_golang/prometheus
+# RUN go get -d github.com/prometheus/client_golang/prometheus/promauto
 RUN go get -d github.com/prometheus/client_golang/prometheus/promhttp
 # Execute instructions on a new layer on top of current image. Run in shell.
 RUN CGO_ENABLED=0 go build -a -installsuffix cgo --ldflags "-s -w" -o /build/main
