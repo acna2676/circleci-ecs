@@ -1,13 +1,13 @@
 package main
 
 import (
-	"gotrading/app/controllers"
+	"fmt"
+	"gotrading/app/models"
 	"gotrading/config"
 	"gotrading/utils"
 )
 
 func main() {
 	utils.LoggingSettings(config.Config.LogFile)
-	controllers.StreamIngestionData()
-	controllers.StartWebServer()
+	fmt.Println(models.DbConnection)
 }

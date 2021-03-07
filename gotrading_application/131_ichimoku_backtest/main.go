@@ -1,13 +1,15 @@
 package main
 
 import (
+    "import log"
+
 	"gotrading/app/controllers"
 	"gotrading/config"
 	"gotrading/utils"
 )
 
-func main() {
+func main(){
 	utils.LoggingSettings(config.Config.LogFile)
 	controllers.StreamIngestionData()
-	controllers.StartWebServer()
+    log.Println(controllers.StartWebServer())
 }
